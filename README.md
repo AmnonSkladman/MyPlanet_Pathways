@@ -4,4 +4,12 @@
 Amnon, Derrek, Mandy, Marco
 
 # Purpose
-Create a tool to help members collate and synchornize documents.
+System to filter and organize excel data. Data has to be relational, but non-destructive.
+
+# Possible Needs
+1. CSV Reader (or similar)
+2. Data Visualizer (or similar)
+3. Security (authority or permission)
+4. Upload Tool
+5. 
+
