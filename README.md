@@ -17,5 +17,7 @@ System to filter and organize excel data. Data has to be relational, but non-des
 
 # Possible Solutions
 1. Collate all data into one database/sheet and have location on a foreign relational key.
-2. 
+ ---> PHP & MySQL
+ ---> React & NodeJS
+ ---> Database
 
