@@ -1,10 +1,10 @@
 # MyPlanet - The Pathways Project
 
 # Members
-Amnon S.
-Derrek C.
-Mandy C.
-Marco B.
+- Amnon S.
+- Derrek C.
+- Mandy C.
+- Marco B.
 
 # Purpose
 System to filter and organize excel data. Data has to be relational, but non-destructive.
