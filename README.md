@@ -11,5 +11,8 @@ System to filter and organize excel data. Data has to be relational, but non-des
 2. Data Visualizer (or similar)
 3. Security (authority or permission)
 4. Upload Tool
-5. 
+
+# Possible Solutions
+1. Collate all data into one database/sheet and have location on a foreign relational key.
+2. 
 
