@@ -1,13 +1,16 @@
 /* PSEUDO */
-
+::selection {
+    background-color: #007934;
+    color: #FAFAFA;
+}
 
 /* MAIN */
 body {
     font-size: 10px;
     color: #000000;
     margin: 0%;
-        padding: 0%;
-    /*         #8F23B3 */
+    padding: 0%;
+    overflow: scroll;
 }
 
 nav {
@@ -18,8 +21,8 @@ nav {
     flex-direction: row;
     align-content: center;
     align-items: center;
-    justify-content: center;
-    font-family: "Roboto";
+    justify-content: space-between;
+    font-family: "Raleway";
 }
 
 nav form {
@@ -29,11 +32,72 @@ nav form {
 
 nav form select {
     padding: 1em;
+    font-family: "Raleway";
+    background-color: #FAFAFA;
+    height: 2em;
+    width: auto;
 }
 
+nav form button {
+    font-family: "Raleway";
+    background-color: #FAFAFA;
+    border-radius: 5px;
+    border: 1px solid #888888;
+    height: 2em;
+    width: auto;
+}
 
+table {
+    font-family: "Roboto"; 
+    color: #242424;
+    border-collapse: collapse;
+    width: 100%;
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+/*    table-layout: fixed;*/
+    overflow: scroll;
+}
+
+table tr td {
+    border: 1px solid #888888;
+}
+
+table tr:hover {
+    background-color: #EAEAEA;
+}
+
+table td {
+    word-wrap: break-word;
+    word-break: break-all;
+    font-size: 1.25em;
+    height: 2em;
+    padding: 1em;
+}
+
+table th {
+    font-size: 1.5em;
+    background-color: #8F23B3;
+    color: #FAFAFA;
+    height: 2em;
+    text-align: left;
+    padding: 0.5em 1em 0.5em 1em;
+}
 
 /* CLASS */
 
 
 /* ID */
+#logo {
+    padding: 2em;
+}
+
+#flexContainer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    overflow: scroll;
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+}
