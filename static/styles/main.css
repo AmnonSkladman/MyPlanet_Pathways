@@ -1,0 +1,39 @@
+/* PSEUDO */
+
+
+/* MAIN */
+body {
+    font-size: 10px;
+    color: #000000;
+    margin: 0%;
+        padding: 0%;
+    /*         #8F23B3 */
+}
+
+nav {
+    height: 10%;
+    background: #007934;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto";
+}
+
+nav form {
+    font-size: 2em;
+    margin: 1em;
+}
+
+nav form select {
+    padding: 1em;
+}
+
+
+
+/* CLASS */
+
+
+/* ID */
