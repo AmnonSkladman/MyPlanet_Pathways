@@ -34,5 +34,16 @@ app.get('/', (req, res, next) => {
 app.get('/api/:id&:name', (req, res, next) => {
 	const data = req.params.name
 	console.log(data)
+	client.query('SELECT NOW()', (err, res) => {
+	  console.log(err, res)
+	  client.end()
+	})
 	res.status(204).end()
 })
+
+app.post('/api/upload', bodyParser.json({}) (req, res, next) => {
+	console.log(req.body)
+	res.status(204).end()
+})
+
+

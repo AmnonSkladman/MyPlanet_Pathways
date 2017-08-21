@@ -1,1 +1,35 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+
+<html>
+<head>
+<script lang="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.3/xlsx.js"></script>
+
+</head>
+
+<body>
+
+<input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ID="fileSelect" runat="server" onchange="openFile(event)" /> 
+<img id="output"/>
+
+</body>
+
+<script>
+var openFile = function(event) {
+    var input = event.target;
+    var reader = new FileReader();
+
+    reader.onload = function(){
+	  var dataURL = reader.result;
+	  var output = document.getElementById('output');
+	  output.src = dataURL;
+	  console.log(dataURL)
+
+	  var wb = XLSX.read(dataURL, {type: 'base64'});
+	  var result = XLSX.utils.sheet_to_json(wb.Sheets.SheetJS)
+
+	  console.log(result)
+    };
+    reader.readAsDataURL(input.files[0])
+  };
+</script>
+</html>
