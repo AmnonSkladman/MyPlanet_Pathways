@@ -1,0 +1,5 @@
+---
+applications:
+ - name: PathwaysCanada
+   random-route: true
+   memory: 256M
