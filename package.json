@@ -1,0 +1,23 @@
+{
+  "name": "myplanet_pathways",
+  "version": "0.0.0",
+  "description": "MyPlanet project created for Pathways to Education",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmnonSkladman/MyPlanet_Pathways.git"
+  },
+  "author": "Amnon, Derrek, Mandy, Marco",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/AmnonSkladman/MyPlanet_Pathways/issues"
+  },
+  "homepage": "https://github.com/AmnonSkladman/MyPlanet_Pathways#readme"
+}
