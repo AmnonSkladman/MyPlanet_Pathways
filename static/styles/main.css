@@ -23,7 +23,6 @@ nav {
     align-items: center;
     justify-content: space-between;
     font-family: "Raleway";
-    margin-bottom: 2em;
 }
 
 nav form {
@@ -51,29 +50,38 @@ nav form button {
 table {
     font-family: "Roboto"; 
     color: #242424;
-    padding: 1em;
-    border: 1px solid #8F23B3;
     border-collapse: collapse;
-    margin: 1.5em;
+    width: 100%;
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+/*    table-layout: fixed;*/
+    overflow: scroll;
+}
+
+table tr td {
+    border: 1px solid #888888;
+}
+
+table tr:hover {
+    background-color: #EAEAEA;
 }
 
 table td {
-    padding: 0.25em;
-    border: 1px solid #8F23B3
+    word-wrap: break-word;
+    word-break: break-all;
+    font-size: 1.25em;
+    height: 2em;
+    padding: 1em;
 }
 
-table tr {
-    
-}
-
-table #headerRow {
+table th {
     font-size: 1.5em;
     background-color: #8F23B3;
     color: #FAFAFA;
-}
-
-table .dataRow {
-    font-size: 1.25em;
+    height: 2em;
+    text-align: left;
+    padding: 0.5em 1em 0.5em 1em;
 }
 
 /* CLASS */
@@ -88,4 +96,8 @@ table .dataRow {
     display: flex;
     align-content: center;
     justify-content: center;
+    overflow: scroll;
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
 }
