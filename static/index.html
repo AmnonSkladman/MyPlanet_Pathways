@@ -16,8 +16,9 @@
 
 <script>
 
-var sendData = function(data) {
-    $.post('http://localhost:3000/api/upload', function(data, status) {
+var sendData = function(dataFiles) {
+    console.log(dataFiles)
+    $.post('http://localhost:3000/api/upload', {data: dataFiles}, function(data, status) {
         console.log(status)
     })
 }
@@ -29,10 +30,11 @@ var openFile = function(files) {
 
     Object.keys(files).forEach(i => {
         var reader = new FileReader()
+        console.log(files[i].name)
         reader.readAsDataURL(files[i])
 
         reader.onload = function(event){
-            dataFiles.push(event.target.result)
+            dataFiles.push({name: files[i].name, content: event.target.result})
             if (dataFiles.length === numFiles) {
                 sendData(dataFiles)
             }

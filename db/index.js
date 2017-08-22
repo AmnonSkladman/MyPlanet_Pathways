@@ -16,8 +16,17 @@ function sendToDatabase(keys, params) {
 
 }
 
+function getFromDatabase() {
+	pool.query('SELECT * FROM toronto_site_oct_2016', (err, res) => {
+		console.log(err, res)
+		pool.end()
+		return res
+	});
+}
+
 module.exports = Object.freeze({
-  sendToDatabase
+  sendToDatabase,
+  getFromDatabase
 });
 
 /*
