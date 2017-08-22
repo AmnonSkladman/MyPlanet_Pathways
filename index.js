@@ -1,18 +1,16 @@
-const express = require('express')
-
-const bodyParser = require('body-parser')
+const express = require('express');
+const { Client } = require('pg');
+const app     = express();
+const bodyParser = require('body-parser');
+const db_conn = require('./db/index');
+const config = require('./config/config');
 
 const { Client } = require('pg')
-const connectionString = 'postgres://derekc:derekc2017?!@sl-us-south-1-portal.2.dblayer.com:20238/compose'
 
 const app = express()
 
 const client = new Client({
-  user: 'dbuser',
-  host: 'database.server.com',
-  database: 'mydb',
-  password: 'secretpassword',
-  port: 3211,
+	connectionString: config.connectionString
 })
 client.connect()
 
@@ -23,14 +21,14 @@ client.query(qry, (err, res) => {
   client.end()
 })
 
-const server = app.listen(3000, () => {
-	console.log("listening on port 3000")
-})
+const server = app.listen(config.port, () => {
+  console.log(`Listening on port ${config.port}`);
+});
 
 app.get('/', (req, res, next) => {
 	res.sendFile(__dirname + '/static/index.html')
 })
-
+/*
 app.get('/api/:id&:name', (req, res, next) => {
 	const data = req.params.name
 	console.log(data)
@@ -47,3 +45,14 @@ app.post('/api/upload', bodyParser.json({}), (req, res, next) => {
 })
 
 
+<<<<<<< HEAD
+=======
+app.get('/:id', (req, res, next) => {
+  db_conn.query('SELECT * FROM users WHERE id = $1', [id], (err, res) => {
+    if (err) {
+      return next(err)
+    }
+    res.send(res.rows[0])
+  })
+})
+*/
