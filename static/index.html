@@ -3,31 +3,42 @@
 <html>
 <head>
 <script lang="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.3/xlsx.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 
 <body>
 
-<input type="file" multiple accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ID="fileSelect" runat="server" onchange="openFile(event)" /> 
+<input onchange="openFile(this.files)" type="file" multiple accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ID="fileSelect" runat="server"  /> 
 <img id="output"/>
 
 </body>
 
 <script>
-var openFile = function(event) {
-	var output = document.getElementById('output');
-    var input = event.target;
-    console.log(input)
-    var reader = new FileReader(); 
 
-    reader.onload = function(){
-	  var dataURL = reader.result
-	  console.log(dataURL)
-	  output.src = dataURL;
-	  var wb = XLSX.read(dataURL, {type: 'base64' });
-	  console.log(wb)
-    };
-    reader.readAsDataURL(input.files[0])
-  };
+var sendData = function(data) {
+    $.post('http://localhost:3000/api/upload', function(data, status) {
+        console.log(status)
+    })
+}
+
+var openFile = function(files) {
+    console.log(files)
+    var numFiles = Object.keys(files).length;
+    var dataFiles = []
+
+    Object.keys(files).forEach(i => {
+        var reader = new FileReader()
+        reader.readAsDataURL(files[i])
+
+        reader.onload = function(event){
+            dataFiles.push(event.target.result)
+            if (dataFiles.length === numFiles) {
+                sendData(dataFiles)
+            }
+        };
+    })
+}
+
 </script>
 </html>
