@@ -23,37 +23,38 @@
     <nav>
       <img src="assets/logo-white-en.png" width="250px" id="logo">
       <input id='buttonID' type='file' multiple accept=“application/vnd.openxmlformats-officedocument.spreadsheetml.sheet” ID=“fileSelect” runat=“server” onchange="openFile(this.files)" />
+      <p id="status"></p>
       <form>
-        <select name="Location">
+        <select name="Location" id="filterLoc" onchange="filterText()">
           <option value="">Location</option>
           <option value="toronto">Toronto</option>
           <option value="hamilton">Hamilton</option>
           <option value="mississauga">Mississauga</option>
         </select>
-        <select name="Graduated">
+        <select name="Graduated" id="filterGrad" onchange="filterText()">
           <option value="">Graduated</option>
-          <option value="gradYes">Yes</option>
-          <option value="gradNo">No</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
         </select>
-        <select name="Location">
-          <option value="toronto">Toronto</option>
-          <option value="hamilton">Hamilton</option>
-          <option value="mississauga">Mississauga</option>
+        <select name="PS">
+          <option value="">Post Secondary</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
-        <select name="Location">
-          <option value="toronto">Toronto</option>
-          <option value="hamilton">Hamilton</option>
-          <option value="mississauga">Mississauga</option>
+        <select name="HSRet">
+          <option value="">HS Return</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
         <button type="submit">Filter</button>
       </form>
     </nav>
-    
     <!-- Table -->
     <!-- Main JS -->
     <script src="scripts/main.js"></script>
-    <div id="flexContainer">
-        <table id="table">
+    <div id="flexContainer" class="hide-cols">
+        <div id="show"></div>
+        <table id="table" class="demotbl" id="show-hide-cols">
             <tr id="headerRow">
                 <th>Name</th>
                 <th>P2E</th>
@@ -69,16 +70,17 @@
                 <th>OSAP</th>
             </tr>
             <script>
-//                var response = $.parseJSON(p2eData);
+                //var response = $.parseJSON(p2eData);
+                // This is for parsing JSON data if needed
                 var response = p2eData;
                 
                 $(function populate () {
                     $.each(response, function(i, item) {
-                        var $tr = $('<tr>').append(
+                        var $tr = $('<tr class="content">').append(
                             $('<td>').text(item.name),
                             $('<td>').text(item.p2e),
                             $('<td>').text(item.cohort),
-                            $('<td>').text(item.graduated),
+                            $('<td class="gradCol">').text(item.graduated),
                             $('<td>').text(item.ossd),
                             $('<td>').text(item.hsRet),
                             $('<td>').text(item.uniApp),
@@ -90,6 +92,10 @@
                         );
                         $("#table").append($tr);
                     });
+                });
+            </script> 
+            <script>
+                $("#show-hide-cols").hideCols({
                 });
             </script>
         </table>
