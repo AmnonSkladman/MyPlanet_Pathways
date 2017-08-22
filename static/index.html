@@ -8,26 +8,24 @@
 
 <body>
 
-<input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ID="fileSelect" runat="server" onchange="openFile(event)" /> 
+<input type="file" multiple accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ID="fileSelect" runat="server" onchange="openFile(event)" /> 
 <img id="output"/>
 
 </body>
 
 <script>
 var openFile = function(event) {
+	var output = document.getElementById('output');
     var input = event.target;
-    var reader = new FileReader();
+    console.log(input)
+    var reader = new FileReader(); 
 
     reader.onload = function(){
-	  var dataURL = reader.result;
-	  var output = document.getElementById('output');
-	  output.src = dataURL;
+	  var dataURL = reader.result
 	  console.log(dataURL)
-
-	  var wb = XLSX.read(dataURL, {type: 'base64'});
-	  var result = XLSX.utils.sheet_to_json(wb.Sheets.SheetJS)
-
-	  console.log(result)
+	  output.src = dataURL;
+	  var wb = XLSX.read(dataURL, {type: 'base64' });
+	  console.log(wb)
     };
     reader.readAsDataURL(input.files[0])
   };

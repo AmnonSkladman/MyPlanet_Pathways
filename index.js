@@ -3,10 +3,9 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const { Client } = require('pg')
+const connectionString = 'postgres://derekc:derekc2017?!@sl-us-south-1-portal.2.dblayer.com:20238/compose'
 
 const app = express()
-
-/*
 
 const client = new Client({
   user: 'dbuser',
@@ -17,11 +16,12 @@ const client = new Client({
 })
 client.connect()
 
-client.query('SELECT NOW()', (err, res) => {
+var qry = "SELECT * FROM toronto_site_oct_2016"
+client.query(qry, (err, res) => {
   console.log(err, res)
+  console.log("test")
   client.end()
 })
-*/
 
 const server = app.listen(3000, () => {
 	console.log("listening on port 3000")
@@ -41,7 +41,7 @@ app.get('/api/:id&:name', (req, res, next) => {
 	res.status(204).end()
 })
 
-app.post('/api/upload', bodyParser.json({}) (req, res, next) => {
+app.post('/api/upload', bodyParser.json({}), (req, res, next) => {
 	console.log(req.body)
 	res.status(204).end()
 })
