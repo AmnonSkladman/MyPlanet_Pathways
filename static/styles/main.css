@@ -72,8 +72,7 @@ table tr:hover {
 }
 
 table td {
-    word-wrap: break-word;
-    word-break: break-all;
+    white-space: normal;
     font-size: 1.25em;
     height: 2em;
     padding: 1em;

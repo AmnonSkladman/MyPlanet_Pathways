@@ -15,23 +15,25 @@
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <!-- CSV Reader -->
     <script lang="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.3/xlsx.js"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   </head>
   <body>
   	<!-- Filters, top navigation -->
     <nav>
       <img src="assets/logo-white-en.png" width="250px" id="logo">
-      <input id='buttonID' type='file' multiple accept=“application/vnd.openxmlformats-officedocument.spreadsheetml.sheet” ID=“fileSelect” runat=“server” onchange="openFile(event)" />
-      <div id="output"></div>
+      <input id='buttonID' type='file' multiple accept=“application/vnd.openxmlformats-officedocument.spreadsheetml.sheet” ID=“fileSelect” runat=“server” onchange="openFile(this.files)" />
       <form>
         <select name="Location">
+          <option value="">Location</option>
           <option value="toronto">Toronto</option>
           <option value="hamilton">Hamilton</option>
           <option value="mississauga">Mississauga</option>
         </select>
-        <select name="Location">
-          <option value="toronto">Toronto</option>
-          <option value="hamilton">Hamilton</option>
-          <option value="mississauga">Mississauga</option>
+        <select name="Graduated">
+          <option value="">Graduated</option>
+          <option value="gradYes">Yes</option>
+          <option value="gradNo">No</option>
         </select>
         <select name="Location">
           <option value="toronto">Toronto</option>
@@ -48,8 +50,10 @@
     </nav>
     
     <!-- Table -->
+    <!-- Main JS -->
+    <script src="scripts/main.js"></script>
     <div id="flexContainer">
-        <table>
+        <table id="table">
             <tr id="headerRow">
                 <th>Name</th>
                 <th>P2E</th>
@@ -64,457 +68,31 @@
                 <th>Student Number</th>
                 <th>OSAP</th>
             </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
-            <tr class="dataRow">
-                <td>Arnold Schwartzenegger</td>
-                <td>P12161</td>
-                <td>12</td>
-                <td>2017</td>
-                <td>2016</td>
-                <td>No</td>
-                <td>McMaster, UoT, UBC</td>
-                <td>Sheridan College</td>
-                <td>Sheridan College</td>
-                <td>Interactive Media Management</td>
-                <td>123456789</td>
-                <td>No</td>
-            </tr>
+            <script>
+//                var response = $.parseJSON(p2eData);
+                var response = p2eData;
+                
+                $(function populate () {
+                    $.each(response, function(i, item) {
+                        var $tr = $('<tr>').append(
+                            $('<td>').text(item.name),
+                            $('<td>').text(item.p2e),
+                            $('<td>').text(item.cohort),
+                            $('<td>').text(item.graduated),
+                            $('<td>').text(item.ossd),
+                            $('<td>').text(item.hsRet),
+                            $('<td>').text(item.uniApp),
+                            $('<td>').text(item.colApp),
+                            $('<td>').text(item.ps),
+                            $('<td>').text(item.program),
+                            $('<td>').text(item.studentNum),
+                            $('<td>').text(item.osap),
+                        );
+                        $("#table").append($tr);
+                    });
+                });
+            </script>
         </table>
     </div>
-  <!-- Main JS -->
-  <script src="scripts/main.js"></script>
   </body>
 </html>
