@@ -63,8 +63,12 @@ table tr td {
     border: 1px solid #888888;
 }
 
+table tr:nth-child(even) {
+    background-color: #F8F8F8;
+}
+
 table tr:hover {
-    background-color: #EAEAEA;
+    background-color: #DADADA;
 }
 
 table td {
@@ -100,4 +104,15 @@ table th {
     width: 100%;
     margin: 0%;
     padding: 0%;
+}
+
+#buttonID {
+    font-family: "Raleway";
+    font-size: 2em;
+/*    background-color: #FAFAFA;*/
+/*    border-radius: 5px;*/
+/*    border: 1px solid #888888;*/
+    height: auto;
+    width: auto;
+/*    padding: 0em 0.5em 0em 0.5em;*/
 }
