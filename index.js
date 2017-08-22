@@ -1,11 +1,8 @@
-const express = require('express');
-const { Client } = require('pg');
-const app     = express();
-const bodyParser = require('body-parser');
-const db_conn = require('./db/index');
-const config = require('./config/config');
-
+const express = require('express')
 const { Client } = require('pg')
+const bodyParser = require('body-parser')
+const db_conn = require('./db/index')
+const config = require('./config/config')
 
 const app = express()
 
