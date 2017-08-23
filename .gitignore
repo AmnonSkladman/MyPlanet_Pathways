@@ -1,5 +1,3 @@
 node_modules
 npm-debug.log
 .DS_Store
-modules/database.js
-config/config_dev.js

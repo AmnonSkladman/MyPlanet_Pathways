@@ -1,5 +1,5 @@
 ---
 applications:
- - name: 'Pathways Canada'
+ - name: PathwaysCanada
    random-route: true
    memory: 256M
