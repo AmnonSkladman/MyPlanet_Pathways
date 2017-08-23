@@ -9,21 +9,28 @@
 
 <body>
 
-<input onchange="openFile(this.files)" type="file" multiple accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ID="fileSelect" runat="server"  /> 
+<input onchange="openFiles(this.files)" type="file" multiple accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ID="fileSelect" runat="server"  /> 
 <img id="output"/>
+<button onclick="getData()">Get Request</button>
 
 </body>
 
 <script>
 
-var sendData = function(dataFiles) {
+function sendData(dataFiles) {
     console.log(dataFiles)
     $.post('http://localhost:3000/api/upload', {data: dataFiles}, function(data, status) {
         console.log(status)
     })
 }
 
-var openFile = function(files) {
+function getData() {
+    $.get('http://localhost:3000/api', function(data, status) {
+        console.log(data, status)
+    })
+}
+
+function openFiles(files) {
     console.log(files)
     var numFiles = Object.keys(files).length;
     var dataFiles = []

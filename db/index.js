@@ -17,13 +17,12 @@ pool.query(test_qry, (err, res) => {
 function getFromDatabase(keys, params) {
   var qry = ""
   if (keys.length == 0) {
-    qry = "SELECT * FROM pathways_canada_members"
+    qry = "SELECT * FROM pathways_canada_locations"
   } else {
 
   }
 	pool.query(qry, (err, res) => {
-		console.log(err, res)
-		return res
+		return res.rows
 	});
 }
 

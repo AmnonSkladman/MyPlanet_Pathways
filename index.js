@@ -27,6 +27,10 @@ app.post('/api/upload', (req, res) => {
       return item
     })
   })
+  var result = ""
+  for (i in dataList) {
+    result += JSON.stringify(dataList[i])
+  }
   res.end()
 })
 
@@ -36,8 +40,9 @@ app.get('/api', (req, res, next) => {
  	Object.keys(params).forEach((i) => {
  		keys.push(i)
  	})
- 	console.log(keys, params)
- 	res.send(db_conn.getFromDatabase(keys, params))
-
- 	res.end()
+  var result = db_conn.getFromDatabase(keys, params)
+  console.log(result)
+ 	res.send(result)
 })
+
+
