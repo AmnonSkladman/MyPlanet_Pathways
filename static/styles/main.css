@@ -1,0 +1,307 @@
+/* PSEUDO */
+::selection {
+    background-color: #007934;
+    color: #FAFAFA;
+}
+
+/* MAIN */
+body {
+    font-size: 10px;
+    color: #000000;
+    margin: 0%;
+    padding: 0%;
+    overflow: scroll;
+    width: 100%;
+    height: auto;
+}
+
+nav {
+    height: 10%;
+    background: #007934;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Raleway";
+}
+
+nav form {
+    font-size: 2em;
+    margin: 1em;
+}
+
+nav form select {
+    padding: 1em;
+    font-family: "Raleway";
+    background-color: #FAFAFA;
+    height: 2em;
+    width: auto;
+}
+
+nav form button {
+    font-family: "Raleway";
+    background-color: #FAFAFA;
+    border-radius: 5px;
+    border: 1px solid #888888;
+    height: 2em;
+    width: auto;
+}
+
+table {
+    font-family: "Roboto"; 
+    color: #242424;
+    border-collapse: collapse;
+    width: 100%;
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+/*    table-layout: fixed;*/
+    overflow: scroll;
+}
+
+table tr td {
+    border: 1px solid #888888;
+}
+
+table tr:nth-child(even) {
+    background-color: #F8F8F8;
+}
+
+table tr:hover {
+    background-color: #DADADA;
+}
+
+table td {
+    white-space: normal;
+    font-size: 1.25em;
+    height: 2em;
+    padding: 1em;
+}
+
+table th {
+    font-size: 1.5em;
+    background-color: #8F23B3;
+    color: #FAFAFA;
+    height: 2em;
+    text-align: left;
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+/* CLASS */
+/*
+.hide-cols {
+  margin-bottom: 20px;
+}
+.hide-cols td,
+.hide-cols th {
+  padding: 5px;
+}
+.hide-cols th {
+  background: #567956;
+  color: #fff;
+}
+.hide-cols tr:nth-child(even),
+.hide-cols td:nth-child(even) {
+  background: rgba(172, 242, 172, 0.4);
+}
+.hide-cols tr:last-child td {
+  background: rgba(86, 121, 86, 0.8);
+  color: #fff;
+}
+*/
+.hide-cols .closeWrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 15px 0 5px;
+}
+.hide-cols .hide-col {
+  background: #444;
+  -webkit-border-radius: 0 0 0 50%;
+  -moz-border-radius: 0 0 0 50%;
+  border-radius: 0 0 0 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 16px;
+  color: #fff;
+  border: 0 none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: normal;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.hide-cols .hide-col:hover {
+  background: #222;
+}
+.hide-cols #show {
+  cursor: pointer;
+  margin: 1em;
+  height: 4em;
+}
+.hide-cols #show .btn {
+  width: auto;
+  height: 2em;
+  margin: 0em 0.5em 0em 0.5em;
+  font-size: 2em;
+  font-family: "Raleway";
+  background-color: #FAFAFA;
+  border-radius: 5px;
+  border: 1px solid #888888;
+}
+.hide-cols #show .sort {
+  display: none;
+}
+
+/*dropdown button */
+
+.drop-button {
+    background-color: #ffffff;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    padding: .5em;
+    font-size: 16px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index:1;
+}
+
+.dropdown-content li {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.filter-buttons {
+    padding: 2em;
+}
+
+/*location */
+#loc-content li:hover {
+    background-color: #f1f1f1;
+}
+
+#loc-dropdown:hover #loc-content {
+    display: block;
+}
+
+#loc-dropdown:hover #loc-drop-button {
+    background-color: #C8E6C9;
+}
+
+/*graduation*/
+#grad-content li:hover {
+    background-color: #f1f1f1;
+}
+
+#grad-dropdown:hover #grad-content {
+    display: block;
+}
+
+#grad-dropdown:hover #grad-button {
+    background-color: #C8E6C9;
+}
+
+/*post secondary*/
+#pos-content li:hover {
+    background-color: #f1f1f1;
+}
+
+#pos-dropdown:hover #pos-content {
+    display: block;
+}
+
+#pos-dropdown:hover #pos-button {
+    background-color: #C8E6C9;
+}
+
+/*high school*/
+#hs-content li:hover {
+    background-color: #f1f1f1;
+    transition: ease-in-out 0.5s;
+}
+
+#hs-dropdown:hover #hs-content {
+    display: block;
+    transition: ease-in-out 0.5s;
+}
+
+#hs-dropdown:hover #hs-button {
+    background-color: #C8E6C9;
+    transition: ease-in-out 0.5 s;
+}
+
+
+/*filter button */
+#filter-button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+}
+
+#filter-button:hover {background-color: #3e8e41}
+
+#filter-button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/* ID */
+#logo {
+    padding: 2em;
+}
+
+#flexContainer {
+    /*display: flex;*/
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    overflow: scroll;
+    width: 100%;
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+}
+
+#buttonID {
+    font-family: "Raleway";
+    font-size: 2em;
+/*    background-color: #FAFAFA;*/
+/*    border-radius: 5px;*/
+/*    border: 1px solid #888888;*/
+    height: auto;
+    width: auto;
+/*    padding: 0em 0.5em 0em 0.5em;*/
+}
