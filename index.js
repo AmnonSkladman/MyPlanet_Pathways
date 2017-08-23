@@ -28,6 +28,7 @@ app.post('/api/upload', (req, res) => {
     return newSheet.map(item => {
       //parses file name and adds information into row objects
       item.location = sheet.name.split("_")[0]
+      console.log(item.location)
       item.date = sheet.name.split("_")[2] + " " + sheet.name.split("_")[3]
       return item
     })
@@ -48,11 +49,10 @@ app.get('/api', (req, res, next) => {
  	Object.keys(params).forEach((i) => {
  		keys.push(i)
  	})
-  //gets data from database based on the user's query
+  //gets data from dgatabase based on the user's query
   db_conn.getFromDatabase(keys, params, (result) => {
     console.log(result)
     res.send(result)
   });
 })
-
 
