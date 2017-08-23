@@ -34,8 +34,8 @@ var p2eData = [
         "p2e": "P98970",
         "cohort": "12",
         "graduated": "No",
-        "ossd": "Yes",
-        "hsRet": "No",
+        "ossd": "No",
+        "hsRet": "Yes",
         "uniApp": "UBC, UoT, McMaster",
         "colApp": "Mohawk, Sheridan, Seneca",
         "ps": "UoT",
@@ -60,6 +60,7 @@ var p2eData = [
 
 ];
 
+//Sending POST request
 var sendData = function(data) {
     $.post("http://www.google.com", function(data, status) {
         console.log(status);
@@ -67,12 +68,14 @@ var sendData = function(data) {
     });
 };
 
+//Sending GET request
 var getData = function(data) {
     $.get("", function(data) {
        console.log(status);
     });
 }
 
+//Opening files
 var openFile = function(files) {
     var numFiles = Object.keys(files).length;
     var dataFiles = []
@@ -93,6 +96,7 @@ var openFile = function(files) {
     })
 }
 
+//Filtering data locally
 function filterText() {  
     var rex = new RegExp($('#filterGrad').val());
     if(rex == ""){
@@ -116,6 +120,7 @@ function clearFilter(){
     $('.content').show();
 }
 
+///////////////
 //////// Plugin
 
 /* ----------------------------------------------------------------------

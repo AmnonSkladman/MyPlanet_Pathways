@@ -24,30 +24,39 @@
       <img src="assets/logo-white-en.png" width="250px" id="logo">
       <input id='buttonID' type='file' multiple accept=“application/vnd.openxmlformats-officedocument.spreadsheetml.sheet” ID=“fileSelect” runat=“server” onchange="openFile(this.files)" />
       <p id="status"></p>
-      <form>
-        <select name="Location" id="filterLoc" onchange="filterText()">
-          <option value="">Location</option>
-          <option value="toronto">Toronto</option>
-          <option value="hamilton">Hamilton</option>
-          <option value="mississauga">Mississauga</option>
-        </select>
-        <select name="Graduated" id="filterGrad" onchange="filterText()">
-          <option value="">Graduated</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-        <select name="PS">
-          <option value="">Post Secondary</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        <select name="HSRet">
-          <option value="">HS Return</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        <button type="submit">Filter</button>
-      </form>
+      
+      <div class="filter-buttons">
+          <div class="dropdown" id="loc-dropdown">
+            <button class="drop-button" id="loc-drop-button">Location</button>
+            <div class="dropdown-content" id="loc-content">
+              <li>Kingston</li>
+              <li>Toronto</li>
+              <li>Montreal</li>
+            </div>
+          </div>
+          <div class="dropdown" id="grad-dropdown">
+            <button class="drop-button" id="grad-button">Graduated</button>
+            <div class="dropdown-content" id="grad-content">
+              <li>Yes</li>
+              <li>No</li>
+            </div>
+          </div>
+          <div class="dropdown" id="pos-dropdown">
+            <button class="drop-button" id="pos-button">Post Secondary</button>
+            <div class="dropdown-content" id="pos-content">
+              <li>Yes</li>
+              <li>No</li>
+            </div>
+          </div>
+          <div class="dropdown" id="hs-dropdown">
+            <button class="drop-button" id="hs-button">HS Return</button>
+            <div class="dropdown-content" id="hs-content">
+              <li>Yes</li>
+              <li>No</li>
+            </div>
+          </div>
+          <button id ="filter-button" type="submit">Filter</button>
+      </div> 
     </nav>
     <!-- Table -->
     <!-- Main JS -->
@@ -61,42 +70,55 @@
                 <th>Cohort</th>
                 <th>Graduated</th>
                 <th>OSSD</th>
-                <th>Highschool Return</th>
+                <th>HS Return</th>
                 <th>Uni. Appl.</th>
                 <th>Col. Appl.</th>
-                <th>Post Secondary</th>
+                <th>Post Sec.</th>
                 <th>Program</th>
-                <th>Student Number</th>
+                <th>Student #</th>
                 <th>OSAP</th>
+                <th>Location</th>
             </tr>
             <script>
                 //var response = $.parseJSON(p2eData);
                 // This is for parsing JSON data if needed
-                var response = p2eData;
+                var json = (function () {
+                    var json = null;
+                    $.ajax({
+                        'async': false,
+                        'global': false,
+                        'url': "assets/data.json",
+                        'dataType': "json",
+                        'success': function (data) {
+                            json = data;
+                        }
+                    });
+                    return json;
+                })(); 
                 
                 $(function populate () {
-                    $.each(response, function(i, item) {
+                    $.each(json, function(i, item) {
                         var $tr = $('<tr class="content">').append(
-                            $('<td>').text(item.name),
-                            $('<td>').text(item.p2e),
-                            $('<td>').text(item.cohort),
-                            $('<td class="gradCol">').text(item.graduated),
-                            $('<td>').text(item.ossd),
-                            $('<td>').text(item.hsRet),
-                            $('<td>').text(item.uniApp),
-                            $('<td>').text(item.colApp),
-                            $('<td>').text(item.ps),
-                            $('<td>').text(item.program),
-                            $('<td>').text(item.studentNum),
-                            $('<td>').text(item.osap),
+                            $('<td>').text(item["Name"]),
+                            $('<td>').text(item["P2E#"]),
+                            $('<td>').text(item["Cohort"]),
+                            $('<td class="gradCol">').text(item["Graduated (Y/N)"]),
+                            $('<td>').text(item["OSSD"]),
+                            $('<td>').text(item["Returning to High School in Fall  (Y/N)"]),
+                            $('<td>').text([item["University Applied 1"], item["University Applied 2"], item["University Applied 3"]]),
+                            $('<td>').text([item["College Applied 1"], item["College Applied 2"], item["College Applied 3"]]),
+                            $('<td>').text(item["Name of the post-secondary school attending:"]),
+                            $('<td>').text(item["Name of Program Attending:"]),
+                            $('<td>').text(item["Post Secondary Student #"]),
+                            $('<td>').text(item["Applied for OSAP? (Y/N)"]),
+                            $('<td>').text(item["location"])
                         );
                         $("#table").append($tr);
                     });
                 });
             </script> 
             <script>
-                $("#show-hide-cols").hideCols({
-                });
+                $("#show-hide-cols").hideCols({});
             </script>
         </table>
     </div>

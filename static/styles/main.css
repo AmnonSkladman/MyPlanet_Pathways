@@ -11,6 +11,8 @@ body {
     margin: 0%;
     padding: 0%;
     overflow: scroll;
+    width: 100%;
+    height: auto;
 }
 
 nav {
@@ -158,6 +160,123 @@ table th {
   display: none;
 }
 
+/*dropdown button */
+
+.drop-button {
+    background-color: #ffffff;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    padding: .5em;
+    font-size: 16px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index:1;
+}
+
+.dropdown-content li {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.filter-buttons {
+    padding: 2em;
+}
+
+/*location */
+#loc-content li:hover {
+    background-color: #f1f1f1;
+}
+
+#loc-dropdown:hover #loc-content {
+    display: block;
+}
+
+#loc-dropdown:hover #loc-drop-button {
+    background-color: #C8E6C9;
+}
+
+/*graduation*/
+#grad-content li:hover {
+    background-color: #f1f1f1;
+}
+
+#grad-dropdown:hover #grad-content {
+    display: block;
+}
+
+#grad-dropdown:hover #grad-button {
+    background-color: #C8E6C9;
+}
+
+/*post secondary*/
+#pos-content li:hover {
+    background-color: #f1f1f1;
+}
+
+#pos-dropdown:hover #pos-content {
+    display: block;
+}
+
+#pos-dropdown:hover #pos-button {
+    background-color: #C8E6C9;
+}
+
+/*high school*/
+#hs-content li:hover {
+    background-color: #f1f1f1;
+    transition: ease-in-out 0.5s;
+}
+
+#hs-dropdown:hover #hs-content {
+    display: block;
+    transition: ease-in-out 0.5s;
+}
+
+#hs-dropdown:hover #hs-button {
+    background-color: #C8E6C9;
+    transition: ease-in-out 0.5 s;
+}
+
+
+/*filter button */
+#filter-button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+}
+
+#filter-button:hover {background-color: #3e8e41}
+
+#filter-button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
 /* ID */
 #logo {
@@ -165,12 +284,13 @@ table th {
 }
 
 #flexContainer {
-    display: flex;
+    /*display: flex;*/
     flex-direction: column;
     align-content: center;
     justify-content: center;
     overflow: scroll;
     width: 100%;
+    height: auto;
     margin: 0%;
     padding: 0%;
 }
