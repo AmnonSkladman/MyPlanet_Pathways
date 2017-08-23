@@ -1,4 +1,4 @@
-const config = require('../config/config_dev');
+const config = require('../config/config');
 const { Pool, Client } = require('pg');
 
 const pool = new Pool({
@@ -14,16 +14,21 @@ pool.query(test_qry, (err, res) => {
 });
 */
 
-function getFromDatabase(keys, params) {
-  var qry = ""
-  if (keys.length == 0) {
-    qry = "SELECT * FROM pathways_canada_members"
-  } else {
-
-  }
+function getFromDatabase(keys, params, cb) {
+  var qry = "SELECT * FROM pathways_canada_locations"
+  if (keys.length != 0) {
+    qry += " WHERE "
+    for (i in keys) {
+      qry += "UPPER(" + keys[i] + ") LIKE UPPER('" + params[keys[i]] + "')"
+      if (i != keys.length-1) {
+        qry += " AND "
+      }
+    }
+    qry += ";"
+  } 
+  console.log(qry)
 	pool.query(qry, (err, res) => {
-		console.log(err, res)
-		return res
+    cb(res.rows);
 	});
 }
 
