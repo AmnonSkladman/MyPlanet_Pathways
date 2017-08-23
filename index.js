@@ -20,13 +20,19 @@ app.get('/', (req, res, next) => {
 
 app.post('/api/upload', (req, res) => {
   var dataList = req.body.data.map(sheet => {
-    var newSheet = XLSX.utils.sheet_to_json(XLSX.read(sheet.content.split(',')[1], {type: 'base64'}).Sheets.Sheet1)
+    var newSheet = XLSX.utils.sheet_to_json(Object.values(XLSX.read(sheet.content.split(',')[1], {type: 'base64'}).Sheets)[0])
     return newSheet.map(item => {
       item.location = sheet.name.split("_")[0]
+      console.log(item.location)
       item.date = sheet.name.split("_")[2] + " " + sheet.name.split("_")[3]
       return item
     })
   })
+  var result = ""
+  for (i in dataList) {
+    result += JSON.stringify(dataList[i])
+  }
+  console.log(dataList)
   res.end()
 })
 
@@ -36,8 +42,9 @@ app.get('/api', (req, res, next) => {
  	Object.keys(params).forEach((i) => {
  		keys.push(i)
  	})
- 	console.log(keys, params)
- 	res.send(db_conn.getFromDatabase(keys, params))
-
- 	res.end()
+  db_conn.getFromDatabase(keys, params, (result) => {
+    console.log(result)
+    res.send(result)
+  });
 })
+
