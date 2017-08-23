@@ -5,23 +5,30 @@ const pool = new Pool({
   connectionString: config.connectionString,
 });
 
+/*
 var test_qry = "SELECT * FROM pathways_canada_locations WHERE city = 'Toronto' AND locationid = 14";
   
 pool.query(test_qry, (err, res) => {
-  console.log(res.rows)
+  console.log(res)
   pool.end()
 });
+*/
 
 function getFromDatabase(keys, params) {
-	pool.query('SELECT * FROM pathways_canada_members WHERE', (err, res) => {
+  var qry = ""
+  if (keys.length == 0) {
+    qry = "SELECT * FROM pathways_canada_members"
+  } else {
+
+  }
+	pool.query(qry, (err, res) => {
 		console.log(err, res)
-		pool.end()
 		return res
 	});
 }
 
 function postToDatabase(data) {
-  pool.query('SELECT * FROM pathways_canada_members WHERE', (err, res) => {
+  pool.query("", (err, res) => {
     console.log(err, res)
     pool.end()
     return res

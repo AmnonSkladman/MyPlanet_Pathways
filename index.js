@@ -24,11 +24,9 @@ app.post('/api/upload', (req, res) => {
     return newSheet.map(item => {
       item.location = sheet.name.split("_")[0]
       item.date = sheet.name.split("_")[2] + " " + sheet.name.split("_")[3]
-      console.log(typeof item.university)
       return item
     })
   })
-  console.log(dataList)
   res.end()
 })
 
@@ -38,12 +36,8 @@ app.get('/api', (req, res, next) => {
  	Object.keys(params).forEach((i) => {
  		keys.push(i)
  	})
- 	console.log(keys)
- 	db_conn.getFromDatabase(keys, params)
+ 	console.log(keys, params)
+ 	res.send(db_conn.getFromDatabase(keys, params))
 
  	res.end()
-})
-
-app.get('/api/all', (req, res, next) => {
-
 })
