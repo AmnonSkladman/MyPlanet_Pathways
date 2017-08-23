@@ -20,7 +20,9 @@ app.get('/', (req, res, next) => {
 
 app.post('/api/upload', (req, res) => {
   var dataList = req.body.data.map(sheet => {
-    var newSheet = XLSX.utils.sheet_to_json(XLSX.read(sheet.content.split(',')[1], {type: 'base64'}).Sheets.Sheet1)
+    var test = 
+    console.log(test)
+    var newSheet = XLSX.utils.sheet_to_json(Object.values(XLSX.read(sheet.content.split(',')[1], {type: 'base64'}).Sheets)[0])
     return newSheet.map(item => {
       item.location = sheet.name.split("_")[0]
       item.date = sheet.name.split("_")[2] + " " + sheet.name.split("_")[3]
@@ -31,6 +33,7 @@ app.post('/api/upload', (req, res) => {
   for (i in dataList) {
     result += JSON.stringify(dataList[i])
   }
+  console.log(dataList)
   res.end()
 })
 
@@ -40,9 +43,10 @@ app.get('/api', (req, res, next) => {
  	Object.keys(params).forEach((i) => {
  		keys.push(i)
  	})
-  var result = db_conn.getFromDatabase(keys, params)
-  console.log(result)
- 	res.send(result)
+  db_conn.getFromDatabase(keys, params, (result) => {
+    console.log(result)
+    res.send(result)
+  });
 })
 
 

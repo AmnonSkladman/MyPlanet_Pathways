@@ -1,4 +1,4 @@
-const config = require('../config/config_dev');
+const config = require('../config/config');
 const { Pool, Client } = require('pg');
 
 const pool = new Pool({
@@ -14,7 +14,7 @@ pool.query(test_qry, (err, res) => {
 });
 */
 
-function getFromDatabase(keys, params) {
+function getFromDatabase(keys, params, cb) {
   var qry = ""
   if (keys.length == 0) {
     qry = "SELECT * FROM pathways_canada_locations"
@@ -22,7 +22,7 @@ function getFromDatabase(keys, params) {
 
   }
 	pool.query(qry, (err, res) => {
-		return res.rows
+    cb(res.rows);
 	});
 }
 
