@@ -4,14 +4,10 @@
   "description": "MyPlanet project created for Pathways to Education",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.4",
-    "pg": "^7.1.2",
-    "xlsx": "^0.11.3"
+    "express": "^4.15.4"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
