@@ -25,7 +25,7 @@ function sendData(dataFiles) {
 }
 
 function getData() {
-    $.get('http://localhost:3000/api?city=toronto', function(data, status) {
+    $.get('http://pathways-canada.mybluemix/api?city=toronto', function(data, status) {
         console.log(data, status)
     })
 }

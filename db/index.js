@@ -15,6 +15,7 @@ pool.query(test_qry, (err, res) => {
 */
 
 function getFromDatabase(keys, params, cb) {
+  //prepares SQL query based on keys and params provided in GET request
   var qry = "SELECT * FROM pathways_canada_locations"
   if (keys.length != 0) {
     qry += " WHERE "
@@ -30,7 +31,7 @@ function getFromDatabase(keys, params, cb) {
 	pool.query(qry, (err, res) => {
     cb(res.rows);
 	});
-}
+}g
 
 function postToDatabase(data) {
   pool.query("", (err, res) => {
