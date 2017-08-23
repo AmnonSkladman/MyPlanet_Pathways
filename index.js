@@ -20,8 +20,6 @@ app.get('/', (req, res, next) => {
 
 app.post('/api/upload', (req, res) => {
   var dataList = req.body.data.map(sheet => {
-    var test = 
-    console.log(test)
     var newSheet = XLSX.utils.sheet_to_json(Object.values(XLSX.read(sheet.content.split(',')[1], {type: 'base64'}).Sheets)[0])
     return newSheet.map(item => {
       item.location = sheet.name.split("_")[0]
