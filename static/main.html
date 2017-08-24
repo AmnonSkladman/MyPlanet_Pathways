@@ -37,15 +37,15 @@
           <div class="dropdown" id="grad-dropdown">
             <button class="drop-button" id="grad-button">Graduated</button>
             <div class="dropdown-content" id="grad-content">
-              <li>Yes</li>
-              <li>No</li>
+              <li onclick="gradSel(this.innerHTML)">Yes</li>
+              <li onclick="gradSel(this.innerHTML)">No</li>
             </div>
           </div>
           <div class="dropdown" id="pos-dropdown">
             <button class="drop-button" id="pos-button">Post Secondary</button>
             <div class="dropdown-content" id="pos-content">
-              <li>Yes</li>
-              <li>No</li>
+              <li onclick="posSel(this.innerHTML)">Yes</li>
+              <li onclick="gradSel(this.innerHTML)">No</li>
             </div>
           </div>
           <div class="dropdown" id="hs-dropdown">
@@ -55,7 +55,7 @@
               <li>No</li>
             </div>
           </div>
-          <button id ="filter-button" type="submit">Filter</button>
+          <button id ="filter-button" type="submit" onclick="filterText()">Filter</button>
       </div> 
     </nav>
     <!-- Table -->

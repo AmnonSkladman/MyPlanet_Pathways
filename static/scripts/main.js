@@ -97,29 +97,39 @@ var openFile = function(files) {
 }
 
 //Filtering data locally
-function filterText() {  
-    var rex = new RegExp($('#filterGrad').val());
-    if(rex == ""){
-        clearFilter()
+// Filter for Graduated
+let gradSelected = false;
+let gradButtonText = $("#grad-button").text();
+let gradButton = $("#grad-button");
+
+function gradSel(e) {
+    if (gradSelected == false) {
+        gradSelected = true;
+        gradButtonText = e;
+        gradButton.html("Graduated: " + gradButtonText);
     } else {
-        $('.content').hide();
-        $('.gradCol').filter(function() {
-            //console.log($(this));
-            //console.log($(this).text());
-            console.log($('#filterGrad').val());
-            console.log(rex.test($(this).text()));
-            if (rex.test($(this).text())) {
-                $(this).parent(".content").show();
-            }
-        });
-    }
-}
+        gradSelected = false;
+        gradButton.html("Graduated");
+    };
+};
 
-function clearFilter(){
-    $('.filterLoc').val('');
-    $('.content').show();
-}
+// Filter for Post-Sec
+let posSelected = false;
+let posButtonText = $("#pos-button").text();
+let posButton = $("#pos-button");
 
+function posSel(e) {
+    if (posSelected == false) {
+        posSelected = true;
+        posButtonText = e;
+        posButton.html("Post-secondary: " + posButtonText);
+        //console.log(gradSelectedY);
+    } else {
+        pstSelected = false;
+        //console.log(gradSelectedY);
+        pstButton.html("Post Secondary");
+    };
+};
 ///////////////
 //////// Plugin
 
