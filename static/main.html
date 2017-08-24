@@ -24,7 +24,7 @@
       <img src="assets/logo-white-en.png" width="250px" id="logo">
       <input id='buttonID' type='file' multiple accept=“application/vnd.openxmlformats-officedocument.spreadsheetml.sheet” ID=“fileSelect” runat=“server” onchange="openFile(this.files)" />
       <p id="status"></p>
-      
+
       <div class="filter-buttons">
           <div class="dropdown" id="loc-dropdown">
             <button class="drop-button" id="loc-drop-button">Location</button>
@@ -37,15 +37,15 @@
           <div class="dropdown" id="grad-dropdown">
             <button class="drop-button" id="grad-button">Graduated</button>
             <div class="dropdown-content" id="grad-content">
-              <li onclick="gradSel(this.innerHTML)">Yes</li>
-              <li onclick="gradSel(this.innerHTML)">No</li>
+              <li onclick="gradSel(this.innerHTML)">Y</li>
+              <li onclick="gradSel(this.innerHTML)">N</li>
             </div>
           </div>
           <div class="dropdown" id="pos-dropdown">
             <button class="drop-button" id="pos-button">Post Secondary</button>
             <div class="dropdown-content" id="pos-content">
-              <li onclick="posSel(this.innerHTML)">Yes</li>
-              <li onclick="gradSel(this.innerHTML)">No</li>
+              <li onclick="posSel(this.innerHTML)">Y</li>
+              <li onclick="posSel(this.innerHTML)">N</li>
             </div>
           </div>
           <div class="dropdown" id="hs-dropdown">
@@ -55,8 +55,8 @@
               <li>No</li>
             </div>
           </div>
-          <button id ="filter-button" type="submit" onclick="filterText()">Filter</button>
-      </div> 
+          <button id ="filter-button" type="submit" onclick="testFilter()">Filter</button>
+      </div>
     </nav>
     <!-- Table -->
     <!-- Main JS -->
@@ -84,18 +84,22 @@
                 // This is for parsing JSON data if needed
                 var json = (function () {
                     var json = null;
-                    $.ajax({
-                        'async': false,
-                        'global': false,
-                        'url': "assets/data.json",
-                        'dataType': "json",
-                        'success': function (data) {
-                            json = data;
-                        }
-                    });
-                    return json;
-                })(); 
-                
+                    // $.ajax({
+                    //     'async': false,
+                    //     'global': false,
+                    //     'url': "assets/data.json",
+                    //     'dataType': "json",
+                    //     'success': function (data) {
+                    //         json = data;
+                    //     }
+                    // });
+                })();
+
+                $.get("http://localhost:3000/api/locations", function (data) {
+                  console.log(data);
+                });
+                //return json;
+
                 $(function populate () {
                     $.each(json, function(i, item) {
                         var $tr = $('<tr class="content">').append(
@@ -107,7 +111,7 @@
                             $('<td>').text(item["Returning to High School in Fall  (Y/N)"]),
                             $('<td>').text([item["University Applied 1"], item["University Applied 2"], item["University Applied 3"]]),
                             $('<td>').text([item["College Applied 1"], item["College Applied 2"], item["College Applied 3"]]),
-                            $('<td>').text(item["Name of the post-secondary school attending:"]),
+                            $('<td class="posCol">').text(item["Name of the post-secondary school attending:"]),
                             $('<td>').text(item["Name of Program Attending:"]),
                             $('<td>').text(item["Post Secondary Student #"]),
                             $('<td>').text(item["Applied for OSAP? (Y/N)"]),
@@ -116,7 +120,7 @@
                         $("#table").append($tr);
                     });
                 });
-            </script> 
+            </script>
             <script>
                 $("#show-hide-cols").hideCols({});
             </script>

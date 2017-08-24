@@ -2,7 +2,7 @@ var openFile = function(event) {
     var output = document.getElementById('output');
     var input = event.target;
     console.log(input)
-    var reader = new FileReader(); 
+    var reader = new FileReader();
 
     reader.onload = function(){
       var dataURL = reader.result
@@ -96,6 +96,7 @@ var openFile = function(files) {
     })
 }
 
+/////////////////////////
 //Filtering data locally
 // Filter for Graduated
 let gradSelected = false;
@@ -107,9 +108,11 @@ function gradSel(e) {
         gradSelected = true;
         gradButtonText = e;
         gradButton.html("Graduated: " + gradButtonText);
+        return gradButtonText;
     } else {
         gradSelected = false;
         gradButton.html("Graduated");
+        return gradButtonText;
     };
 };
 
@@ -123,13 +126,52 @@ function posSel(e) {
         posSelected = true;
         posButtonText = e;
         posButton.html("Post-secondary: " + posButtonText);
-        //console.log(gradSelectedY);
     } else {
-        pstSelected = false;
-        //console.log(gradSelectedY);
-        pstButton.html("Post Secondary");
+        posSelected = false;
+        posButton.html("Post Secondary");
     };
 };
+
+// Filter Button
+filterButton = $("#filter-button");
+
+// function filterText() {
+//     if (gradButton.html() == "Graduated") {
+//         clearFilter(); //Shows everything
+//     } else {
+//         var rex = gradButtonText.toLowerCase();
+//         $('.content').hide(); //Hides EVERYTHING
+//         $('.gradCol').filter(function() {
+//             //console.log(rex == $(this).text());
+//             if (rex == $(this).text()) {
+//                 $(this).parent(".content").show();
+//             }
+//         });
+//     }
+// }
+
+function clearFilter(){
+    //$('.filterLoc').val('');
+    $('.content').show();
+}
+
+function testFilter() {
+    var rexGrad = gradButtonText.toLowerCase();
+    var rexPos = posButtonText.toLowerCase();
+
+    $('.gradCol').filter(function() {
+        if (rexGrad != $(this).text()) {
+            $(this).parent(".content").hide();
+        }
+    });
+
+    $('.posCol').filter(function() {
+        //console.log(rexPos);
+        if (rexPos != $(this).text()) {
+            $(this).parent(".content").hide();
+        }
+    });
+}
 ///////////////
 //////// Plugin
 
@@ -152,7 +194,7 @@ function posSel(e) {
 			unhideAll: '<span class="glyphicon glyphicon-eye-open"></span>  All Columns',
 			autoSort: true
 		}, options);
-		
+
 	//translations
 	var $table = this,
 			$show = $('#show'),
@@ -163,7 +205,7 @@ function posSel(e) {
 	$table + $('th')
 			.css({
 				paddingRight: 0,
-				paddingTop: 0		
+				paddingTop: 0
 			})
 			.prepend('<div class="closeWrap"><button class="hide-col">' + settings.hideColumn + '</button>')
 			.append('</div>')
@@ -188,7 +230,7 @@ function posSel(e) {
 		$(this).parent().parent('th').fadeOut('slow');
 
 		//hides the td of the column that is clicked in each row
-		$table + $('tr').each(function() { 
+		$table + $('tr').each(function() {
 			$('td:eq(' + col + ')',this).fadeOut('slow');
 		});
 
@@ -199,16 +241,16 @@ function posSel(e) {
 
 		//adds a link to again show a single hidden column
         var colData = $(this).parent().parent('th').text();
-        
+
 		$show.append('<button data-show="' + col + '" class="btn btn-sm btn-primary">' + (colData)  + '</button>');
 
 		links++;
-		if (settings.autoSort == true ) {			
+		if (settings.autoSort == true ) {
 			sortButtons();
 		}
 		return false;
 	});
-		
+
 	//this happens when a link to show one or all columns is clicked:
 	$show.on('click','button', function(event){
 
@@ -222,7 +264,7 @@ function posSel(e) {
 			var col = $(this).data('show');
 
 		//displays the td and th of the column that is clicked in each row
-		$table + $('tr').each(function() { 
+		$table + $('tr').each(function() {
 			$('th:eq(' + col + '),td:eq(' + col + ')',this).fadeIn('slow');
 		});
 
@@ -230,13 +272,13 @@ function posSel(e) {
 		//remove unhideAll when there are no more individual show links
 		if (links == 0) {
 			$show.children().remove(); //remove all show columns links
-		}				
+		}
 		//remove this show link
 		$(this).next('br').remove();
 		$(this).remove();
 		}
-	});	
-		
+	});
+
 		$show.on('click', '.sort', function() {
 			sortButtons();
 			return false;
