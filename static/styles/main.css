@@ -4,6 +4,11 @@
     color: #FAFAFA;
 }
 
+::-moz-selection {
+    background-color: #007934;
+    color: #FAFAFA;
+}
+
 /* MAIN */
 body {
     font-size: 10px;
@@ -205,10 +210,14 @@ table th {
 
 #loc-dropdown:hover #loc-content {
     display: block;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
 }
 
 #loc-dropdown:hover #loc-drop-button {
     background-color: #C8E6C9;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
 }
 
 /*graduation*/
@@ -218,10 +227,14 @@ table th {
 
 #grad-dropdown:hover #grad-content {
     display: block;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
 }
 
 #grad-dropdown:hover #grad-button {
     background-color: #C8E6C9;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
 }
 
 /*post secondary*/
@@ -231,10 +244,14 @@ table th {
 
 #pos-dropdown:hover #pos-content {
     display: block;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
 }
 
 #pos-dropdown:hover #pos-button {
     background-color: #C8E6C9;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
 }
 
 /*high school*/
@@ -246,11 +263,13 @@ table th {
 #hs-dropdown:hover #hs-content {
     display: block;
     transition: ease-in-out 0.5s;
+    cursor: pointer;
 }
 
 #hs-dropdown:hover #hs-button {
     background-color: #C8E6C9;
-    transition: ease-in-out 0.5 s;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
 }
 
 
