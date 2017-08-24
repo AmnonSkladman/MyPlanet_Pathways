@@ -23,16 +23,16 @@ app.post('/api/upload', (req, res) => {
     var newSheet = XLSX.utils.sheet_to_json(Object.values(XLSX.read(sheet.content.split(',')[1], {type: 'base64'}).Sheets)[0])
     return newSheet.map(item => {
       item.location = sheet.name.split("_")[0]
-      console.log(item.location)
       item.date = sheet.name.split("_")[2] + " " + sheet.name.split("_")[3]
       return item
     })
   })
+
   var result = ""
   for (i in dataList) {
     result += JSON.stringify(dataList[i])
   }
-  console.log(dataList)
+  db_conn.postToDatabase(dataList)
   res.end()
 })
 
@@ -43,7 +43,6 @@ app.get('/api', (req, res, next) => {
  		keys.push(i)
  	})
   db_conn.getFromDatabase(keys, params, (result) => {
-    console.log(result)
     res.send(result)
   });
 })

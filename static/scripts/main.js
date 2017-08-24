@@ -1,19 +1,3 @@
-var openFile = function(event) {
-    var output = document.getElementById('output');
-    var input = event.target;
-    console.log(input)
-    var reader = new FileReader(); 
-
-    reader.onload = function(){
-      var dataURL = reader.result
-      console.log(dataURL)
-      output.src = dataURL;
-      var wb = XLSX.read(dataURL, {type: 'base64' });
-      console.log(wb)
-    };
-    reader.readAsDataURL(input.files[0])
-};
-
 var p2eData = [
     {
         "name": "Stephen Chow",
@@ -60,12 +44,31 @@ var p2eData = [
 
 ];
 
-//Sending POST request
+var openFile = function(files) {
+  var numFiles = Object.keys(files).length;
+  var dataFiles = []
+  console.log("input", files)
+
+  Object.keys(files).forEach(i => {
+      var reader = new FileReader()
+
+      reader.onload = function(event){
+          dataFiles.push({'content': event.target.result, 'name': files[i].name})
+
+          if (dataFiles.length === numFiles) {
+            console.log('dataFiles:', dataFiles)
+              sendData(dataFiles)
+          }
+      };
+      reader.readAsDataURL(files[i])
+  })
+}
+
 var sendData = function(data) {
-    $.post("http://www.google.com", function(data, status) {
-        console.log(status);
-        $("#status").html(status);
-    });
+console.log(data)
+  $.post("http://localhost:3000/api/upload", {data: data}, function(data, status) {
+      console.log(status);
+  });
 };
 
 //Sending GET request
@@ -73,27 +76,6 @@ var getData = function(data) {
     $.get("", function(data) {
        console.log(status);
     });
-}
-
-//Opening files
-var openFile = function(files) {
-    var numFiles = Object.keys(files).length;
-    var dataFiles = []
-    console.log("input", files)
-
-    Object.keys(files).forEach(i => {
-        var reader = new FileReader()
-        reader.readAsDataURL(files[i])
-
-        reader.onload = function(event){
-            dataFiles.push(event.target.result)
-            console.log('dataFiles:', dataFiles)
-
-            if (dataFiles.length === numFiles) {
-                sendData(dataFiles)
-            }
-        };
-    })
 }
 
 //Filtering data locally

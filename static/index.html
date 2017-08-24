@@ -11,7 +11,8 @@
 
   <body>
   <img src="assets/logo-white-en.png" width="250px" id="logo">
-  <button onclick="test()">GET REQUEST</button>
+  <button onclick="test()">POST REQUEST</button>
+  <input id='buttonID' type='file' multiple accept=“application/vnd.openxmlformats-officedocument.spreadsheetml.sheet” ID=“fileSelect” runat=“server” onchange="openFile(this.files)" />
 
   <div id="main" class="container">
     <form name="loginform" id="loginform" action="main.html" method="get">
@@ -35,12 +36,32 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.3/xlsx.js"></script>
   <script>
-  function test() {
-    $.get('http://localhost:3000/api/locations', function(data, status) {
-      console.log(data, status)
-    })
+  var openFile = function(files) {
+      var numFiles = Object.keys(files).length;
+      var dataFiles = []
+      console.log("input", files)
 
+      Object.keys(files).forEach(i => {
+          var reader = new FileReader()
+
+          reader.onload = function(event){
+              dataFiles.push({'content': event.target.result, 'name': files[i].name})
+
+              if (dataFiles.length === numFiles) {
+                console.log('dataFiles:', dataFiles)
+                  sendData(dataFiles)
+              }
+          };
+          reader.readAsDataURL(files[i])
+      })
   }
+  var sendData = function(data) {
+    console.log(data)
+      $.post("http://localhost:3000/api/upload", {data: data}, function(data, status) {
+          console.log(status);
+      });
+  };
+
   </script>
 
   </body>
