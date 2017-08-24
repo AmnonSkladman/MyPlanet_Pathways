@@ -48,3 +48,9 @@ app.get('/api', (req, res, next) => {
   });
 })
 
+app.get('/api/locations', (req, res, next) => {
+  db_conn.getLocations((result) => {
+    res.send(result)
+  })
+})
+

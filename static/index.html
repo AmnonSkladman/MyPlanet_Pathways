@@ -11,6 +11,7 @@
 
   <body>
   <img src="assets/logo-white-en.png" width="250px" id="logo">
+  <button onclick="test()">GET REQUEST</button>
 
   <div id="main" class="container">
     <form name="loginform" id="loginform" action="main.html" method="get">
@@ -31,6 +32,16 @@
 
     </form>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.3/xlsx.js"></script>
+  <script>
+  function test() {
+    $.get('http://localhost:3000/api/locations', function(data, status) {
+      console.log(data, status)
+    })
+
+  }
+  </script>
 
   </body>
 </html>

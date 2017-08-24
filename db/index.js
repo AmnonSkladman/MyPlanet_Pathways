@@ -40,9 +40,20 @@ function postToDatabase(data) {
   });
 }
 
+function getLocations(cb) {
+  pool.query("SELECT agency_name FROM public.pathways_canada_locations ORDER BY agency_name ASC", (err, res) => {
+    var result = []
+    for (i in res.rows) {
+      result.push(Object.values(res.rows[i])[0])
+    }
+    cb(result)
+  });
+}
+
 module.exports = Object.freeze({
   getFromDatabase,
-  postToDatabase
+  postToDatabase,
+  getLocations
 });
 
 /*
