@@ -17,6 +17,8 @@
     <script lang="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.3/xlsx.js"></script>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- CSV Downloader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.3/xlsx.js"></script>
   </head>
   <body>
   	<!-- Filters, top navigation -->
@@ -24,6 +26,8 @@
       <img src="assets/logo-white-en.png" width="250px" id="logo">
       <input id='buttonID' type='file' multiple accept=“application/vnd.openxmlformats-officedocument.spreadsheetml.sheet” ID=“fileSelect” runat=“server” onchange="openFile(this.files)" />
       <p id="status"></p>
+
+      <button onclick="excelDownload()">Download</button>
 
       <div class="filter-buttons">
           <div class="dropdown" id="loc-dropdown">
@@ -55,7 +59,7 @@
               <li>No</li>
             </div>
           </div>
-          <button id ="filter-button" type="submit" onclick="testFilter()">Filter</button>
+          <button id ="filter-button" type="submit" onclick="getFilter()">Filter</button>
       </div>
     </nav>
     <!-- Table -->
@@ -80,25 +84,12 @@
                 <th>Location</th>
             </tr>
             <script>
-                //var response = $.parseJSON(p2eData);
-                // This is for parsing JSON data if needed
-                var json = (function () {
-                    var json = null;
-                    // $.ajax({
-                    //     'async': false,
-                    //     'global': false,
-                    //     'url': "assets/data.json",
-                    //     'dataType': "json",
-                    //     'success': function (data) {
-                    //         json = data;
-                    //     }
-                    // });
-                })();
 
-                $.get("http://localhost:3000/api/locations", function (data) {
-                  console.log(data);
-                });
-                //return json;
+
+                // $.get("http://localhost:3000/api/locations", function (data) {
+                //   console.log(data);
+                // });
+
 
                 $(function populate () {
                     $.each(json, function(i, item) {

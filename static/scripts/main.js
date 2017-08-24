@@ -1,3 +1,19 @@
+//JSON DATA WOO
+var json = (function (options) {
+    var json = null;
+    $.ajax({
+        'method': 'GET',
+        'async': false,
+        'global': false,
+        'url': "url",
+        'dataType': "json",
+        'success': function (data) {
+            json = data;
+        }
+    });
+    return json;
+})();
+
 var openFile = function(event) {
     var output = document.getElementById('output');
     var input = event.target;
@@ -14,51 +30,14 @@ var openFile = function(event) {
     reader.readAsDataURL(input.files[0])
 };
 
-var p2eData = [
-    {
-        "name": "Stephen Chow",
-        "p2e": "P13145",
-        "cohort": "12",
-        "graduated": "Yes",
-        "ossd": "Yes",
-        "hsRet": "No",
-        "uniApp": "UBC, UoT, McMaster",
-        "colApp": "Seneca, Sheridan",
-        "ps": "no",
-        "program": "n/a",
-        "studentNum": "n/a",
-        "osap": "yes"
-    },
-    {
-        "name": "Arnold Schwarzenegger",
-        "p2e": "P98970",
-        "cohort": "12",
-        "graduated": "No",
-        "ossd": "No",
-        "hsRet": "Yes",
-        "uniApp": "UBC, UoT, McMaster",
-        "colApp": "Mohawk, Sheridan, Seneca",
-        "ps": "UoT",
-        "program": "Web Development",
-        "studentNum": "869686958",
-        "osap": "no"
-    },
-    {
-        "name": "Mr. Bean",
-        "p2e": "P45466",
-        "cohort": "12",
-        "graduated": "Yes",
-        "ossd": "Yes",
-        "hsRet": "No",
-        "uniApp": "None",
-        "colApp": "Seneca, Sheridan, Mohawk, George Brown",
-        "ps": "Sheridan College",
-        "program": "Web Design",
-        "studentNum": "1048888",
-        "osap": "yes"
-    }
-
-];
+// CSV Downloader
+function excelDownload () {
+    var csv = "data:text/csv;charset=utf-8," + encodeURIComponent(XLSX.utils.sheet_to_csv(XLSX.utils.json_to_sheet(json)))
+   var link = document.createElement("a");
+   document.body.appendChild(link);
+   link.href = csv;
+   link.click();
+}
 
 //Sending POST request
 var sendData = function(data) {
@@ -135,6 +114,9 @@ function posSel(e) {
 // Filter Button
 filterButton = $("#filter-button");
 
+function getFilter () {
+
+}
 // function filterText() {
 //     if (gradButton.html() == "Graduated") {
 //         clearFilter(); //Shows everything
@@ -150,28 +132,50 @@ filterButton = $("#filter-button");
 //     }
 // }
 
-function clearFilter(){
-    //$('.filterLoc').val('');
-    $('.content').show();
-}
+// function clearFilter(){
+//     //$('.filterLoc').val('');
+//     $('.content').show();
+// }
 
-function testFilter() {
-    var rexGrad = gradButtonText.toLowerCase();
-    var rexPos = posButtonText.toLowerCase();
+// function testFilter() {
+//     if (gradButton.html() == "Graduated" && posButton.html() == "Post Secondary") {
+//         clearFilter();
+//     } else {
+//         var rexGrad = gradButtonText.toLowerCase();
+//         var rexPos = posButtonText.toLowerCase();
+//         $('.content').hide();
 
-    $('.gradCol').filter(function() {
-        if (rexGrad != $(this).text()) {
-            $(this).parent(".content").hide();
-        }
-    });
+//         $('.content').filter(function() {
+//             if (
+//                 rexGrad === $(this).text() ||
+//                 (rexPos === "y" && $(this).text() !== "") ||
+//                 (rexPos === "n" && $(this).text() === "") ||
+//                 (rexGrad === $(this).text() && rexPos === "y" && $(this).text() !== "") ||
+//                 (rexGrad === $(this).text() && rexPos === "n" && $(this).text() === "")
+//             ) {
+//                 $(this).parent(".content").show();
+//                 //console.log($(this).text());
+//             }
+//         });
 
-    $('.posCol').filter(function() {
-        //console.log(rexPos);
-        if (rexPos != $(this).text()) {
-            $(this).parent(".content").hide();
-        }
-    });
-}
+//         // $('.gradCol').filter(function() {
+//         //     if (rexGrad === $(this).text()) {
+//         //         $(this).parent(".content").show();
+//         //         console.log("1");
+//         //     }
+//         // });
+
+//         // $('.posCol').filter(function() {
+//         //     if (rexPos === "y" && $(this).text() !== "") {
+//         //         $(this).parent(".content").show();
+//         //         console.log("2");
+//         //     } else if (rexPos === "n" && $(this).text() === "") {
+//         //         $(this).parent(".content").show();
+//         //         console.log("3");
+//         //     }
+//         // });
+//     };
+// }
 ///////////////
 //////// Plugin
 
