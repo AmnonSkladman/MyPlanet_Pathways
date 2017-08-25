@@ -1,6 +1,6 @@
 {
   "name": "myplanet_pathways",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "MyPlanet project created for Pathways to Education",
   "main": "index.js",
   "dependencies": {
