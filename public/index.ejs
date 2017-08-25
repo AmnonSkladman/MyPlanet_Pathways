@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Pathways Canada - Log In</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+</head>
+
+<body>
+    <img src="assets/logo-white-en.png" width="250px" id="logo">
+    <button onclick="test()">POST REQUEST</button>
+    <input id='buttonID' type='file' multiple accept=“application/vnd.openxmlformats-officedocument.spreadsheetml.sheet” ID=“fileSelect”
+        runat=“server” onchange="openFile(this.files)" />
+
+    <div id="main" class="container">
+        <form name="loginform" id="loginform" action="main.ejs" method="get">
+
+            <p class="login-name">
+                <label>Username</label>
+                <input type="text" name="log" id="user_login" class="input" placeholder="username" value="" size="20" />
+            </p>
+
+            <p class="login-password">
+                <label>Password</label>
+                <input type="text" name="log" id="user_password" class="input" placeholder="password" value="" size="20" />
+            </p>
+
+            <p class="login-submit">
+                <input type="submit" name="button-login" id="button-login" class="button" value="Log in" />
+            </p>
+
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.11.3/xlsx.js"></script>
+    <script>
+        var openFile = function (files) {
+            var numFiles = Object.keys(files).length;
+            var dataFiles = []
+            console.log("input", files)
+
+            Object.keys(files).forEach(i => {
+                var reader = new FileReader()
+
+                reader.onload = function (event) {
+                    dataFiles.push({
+                        'content': event.target.result,
+                        'name': files[i].name
+                    })
+
+                    if (dataFiles.length === numFiles) {
+                        console.log('dataFiles:', dataFiles)
+                        sendData(dataFiles)
+                    }
+                };
+                reader.readAsDataURL(files[i])
+            })
+        }
+        var sendData = function (data) {
+            console.log(data)
+            $.post("http://localhost:3000/api/upload", {
+                data: data
+            }, function (data, status) {
+                console.log(status);
+            });
+        };
+    </script>
+
+</body>
+
+</html>
