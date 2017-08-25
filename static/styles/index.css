@@ -13,7 +13,7 @@ body {
 
 #loginform {
     background-color: #f7f7f7;
-    display: contents;
+/*    display: contents;*/
     height: 225px;
     margin: 0 auto;
     border-radius: 25px;
