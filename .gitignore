@@ -1,6 +1,6 @@
 node_modules
 npm-debug.log
 .DS_Store
-modules/database.js
 data.json
 manifest.yml
+VCAP_SERVICES.json
