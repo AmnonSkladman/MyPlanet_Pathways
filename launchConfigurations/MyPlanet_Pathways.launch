@@ -1,0 +1,19 @@
+{
+  "ServiceId": "com.ibm.cloudoe.orion.client.deploy",
+  "Params": {
+    "Target": {
+      "Url": "https://api.ng.bluemix.net",
+      "Org": "marco.beltempo",
+      "Space": "pathways_canada_dev"
+    },
+    "Name": "Pathways Canada",
+    "Instrumentation": {
+      "domain": "mybluemix.net",
+      "services": [
+        "Pathways Canada PostgreSQL-v8"
+      ]
+    }
+  },
+  "Path": "manifest.yml",
+  "Type": "Cloud Foundry"
+}
