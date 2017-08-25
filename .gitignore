@@ -3,4 +3,5 @@ npm-debug.log
 .DS_Store
 data.json
 manifest.yml
+db/npm-debug.log
 VCAP_SERVICES.json
