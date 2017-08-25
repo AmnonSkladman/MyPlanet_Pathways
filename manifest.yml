@@ -1,8 +1,5 @@
 ---
 applications:
- - path: .
+ - name: PathwaysCanada
+   random-route: true
    memory: 256M
-   instances: 1
-   domain: mybluemix.net
-   name: 'Pathways Canada'
-   host: pathways-canada

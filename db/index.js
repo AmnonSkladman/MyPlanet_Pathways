@@ -11,38 +11,6 @@ const client = new Client({
 
 client.connect();
 
-function buildSelectQuery(tableName) {
-  return ['SELECT * FROM', tableName].join(' ');
-}
-
-function selectAll(tableName) {
-  return function(onSelectReturn) {
-    var sql = buildSelectQuery(tableName);
-    var queryClient = buildQueryClient(sql);
-    queryClient(function(err, tableValues) {
-      if (err) {
-        return onSelectReturn(new Error(['Select all failed on', tableName, 'with error', err.toString()].join(' ')));
-      } else {
-        return onSelectReturn(null, tableValues);
-      }
-    });
-  }
-}
-
-function buildQueryClient(query) {
-  return function(onQueryReturn) {
-    connectWithConnectionString(function(err, client, done) {
-      if (err) {
-        return onQueryReturn(new Error(['Database connection failed with error', err.toString()].join(' ')));
-      } else {
-        client.query(query, function(err, results) {
-          done(err);
-          onQueryReturn(err, results);
-        });
-      }
-    });
-  }
-}
 
 var test_qry = "SELECT * FROM pathways_canada_locations WHERE city = 'Toronto' AND locationid = 14";
 
@@ -103,8 +71,5 @@ function getLocations(){
 module.exports = Object.freeze({
   getFromDatabase,
   postToDatabase,
-  getLocations,
-  buildQueryClient,
-  buildQueryClient,
-  selectAll
+  getLocations
 });

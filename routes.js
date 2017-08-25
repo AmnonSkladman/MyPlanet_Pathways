@@ -6,9 +6,7 @@ const db_conn = require('./db/index');
 //define routes
 
 router.get('/', function (req, res) {
-  res.render('index', {
-    db_conn.selectAll('public.pathways_canada_locations'),
-  });
+  res.render('index');
 });
 
 router.post('/api/upload', (req, res) => {

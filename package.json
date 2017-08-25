@@ -1,15 +1,15 @@
 {
-  "name": "myplanet_pathways",
-  "version": "0.0.1",
+  "name": "PathwaysCanada",
+  "version": "0.0.0",
   "description": "MyPlanet project created for Pathways to Education",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "pg": "^7.1.2",
     "xlsx": "^0.11.3",
     "cfenv": "*",
-    "ejs": "~1.0.0"
+    "ejs": "*"
   },
   "devDependencies": {},
   "scripts": {
