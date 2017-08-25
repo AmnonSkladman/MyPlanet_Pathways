@@ -1,18 +1,17 @@
+var vcapServices = require('./vcapServices');
+var mongoCredentials = vcapServices.postgresql[0].credentials;
+var credentialsURI = mongoCredentials.uri;
+
+console.log(credentialsURI);
+
 const config = require('../config/config');
-const { Pool, Client } = require('pg');
+const { Client } = require('pg');
 
-const pool = new Pool({
-  connectionString: config.connectionString,
-});
 
-/*
+
 var test_qry = "SELECT * FROM pathways_canada_locations WHERE city = 'Toronto' AND locationid = 14";
   
-pool.query(test_qry, (err, res) => {
-  console.log(res)
-  pool.end()
-});
-*/
+
 
 function getFromDatabase(keys, params, cb) {
   var qry = "SELECT * FROM pathways_canada_locations"
@@ -45,12 +44,14 @@ module.exports = Object.freeze({
   postToDatabase
 });
 
-/*
+
 const client = new Client({
-  connectionString: config.connectionString,
+  connectionString: credentialsURI,
 });
 
 client.connect();
 
-*/
-  
+client.query(test_qry, (err, res) => {
+  console.log(res)
+  client.end()
+});
