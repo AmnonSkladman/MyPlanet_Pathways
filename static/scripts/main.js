@@ -75,6 +75,24 @@ var openFile = function(files) {
     })
 }
 
+// Filter button label chance for Location
+let locSelected = false;
+let locButtonText = $("#loc-drop-button").text();
+let locButton = $("#loc-drop-button");
+
+function locSel(e) {
+    if (locSelected == false) {
+        locSelected = true;
+        locButtonText = e;
+        locButton.html("Location: " + locButtonText);
+        return locButtonText;
+    } else {
+        locSelected = false;
+        locButton.html("Location");
+        return locButtonText;
+    }
+}
+
 // Filter button label change for Graduated
 let gradSelected = false;
 let gradButtonText = $("#grad-button").text();
@@ -109,36 +127,61 @@ function posSel(e) {
     };
 };
 
+// Filter button label change for HS Return
+let hsSelected = false;
+let hsButtonText = $("#hs-button").text();
+let hsButton = $("#hs-button");
+
+function hsSel(e) {
+    if (hsSelected == false) {
+        hsSelected = true;
+        hsButtonText = e;
+        hsButton.html("HS Return: " + hsButtonText);
+        return hsButtonText;
+    } else {
+        hsSelected = false;
+        hsButton.html("HS Return");
+        return hsButtonText;
+    };
+};
+
 // Filter Button
 filterButton = $("#filter-button");
 
-function filterText() {
-    if (gradButton.html() == "Graduated") {
-        clearFilter(); //Shows everything
-    } else {
-        var rex = gradButtonText.toLowerCase();
-        $('.content').hide(); //Hides EVERYTHING
-        $('.gradCol').filter(function() {
-            //console.log(rex == $(this).text());
-            if (rex == $(this).text()) {
-                $(this).parent(".content").show();
-            }
-        });
-    }
-}
+// function filterText() {
+//     if (gradButton.html() == "Graduated") {
+//         clearFilter(); //Shows everything
+//     } else {
+//         var rex = gradButtonText.toLowerCase();
+//         $('.content').hide(); //Hides EVERYTHING
+//         $('.gradCol').filter(function() {
+//             //console.log(rex == $(this).text());
+//             if (rex == $(this).text()) {
+//                 $(this).parent(".content").show();
+//             }
+//         });
+//     }
+// }
 
 function clearFilter(){
     //$('.filterLoc').val('');
     $('.content').show();
 }
 
-// test filling two categories:Graduated and Post Secondary simultaneously
+// test filling two categories: Graduated and Post Secondary simultaneously
 function testFilter() {
-    if (gradButton.html() == "Graduated" && posButton.html() == "Post Secondary") {
+    if (
+        locButton.html() == "Location" &&
+        gradButton.html() == "Graduated" &&
+        posButton.html() == "Post Secondary" &&
+        hsButton.html() == "HS Return"
+        ) {
         clearFilter();
     } else {
-        var rexGrad = gradButtonText.toLowerCase();
-        var rexPos = posButtonText.toLowerCase();
+        let rexLoc = locButtonText;
+        let rexGrad = gradButtonText.toLowerCase();
+        let rexPos = posButtonText.toLowerCase();
+        let rexHS = hsButtonText.toLowerCase();
         $('.content').hide();
 
         // $('.content').filter(function() {
@@ -154,20 +197,32 @@ function testFilter() {
         //     }
         // });
 
-        $('.gradCol').filter(function() {
-            if (rexGrad === $(this).text()) {
+        // Tests for location
+        $('.locCol').filter(function () {
+            if (rexLoc === $(this).text()) {
                 $(this).parent(".content").show();
-                console.log("1");
             }
         });
 
-        $('.posCol').filter(function() {
+        // Tests for graduation
+        $('.gradCol').filter(function () {
+            if (rexGrad === $(this).text()) {
+                $(this).parent(".content").show();
+            }
+        });
+
+        // Test for post-secondary
+        $('.posCol').filter(function () {
             if (rexPos === "y" && $(this).text() !== "") {
                 $(this).parent(".content").show();
-                console.log("2");
             } else if (rexPos === "n" && $(this).text() === "") {
                 $(this).parent(".content").show();
-                console.log("3");
+            }
+        });
+
+        $('.hsCol').filter(function () {
+            if (rexHS === $(this).text()) {
+                $(this).parent(".content").show();
             }
         });
     };
